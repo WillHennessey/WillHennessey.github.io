@@ -32,4 +32,4 @@ gems:
 exclude:
   - Gemfile
   - Gemfile.lock
-timezone: Ireland/Dublin
+timezone: Europe/Dublin
