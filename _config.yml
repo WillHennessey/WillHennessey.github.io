@@ -1,4 +1,4 @@
-# Welcome to Jekyll!
+  # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
 # which you are expected to set up once and rarely edit after that. If you find
@@ -19,17 +19,32 @@ description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "http://anotherengineeringblog.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: sicklickwill
 github_username:  WillHennessey
 
 # Build settings
-markdown: kramdown
-theme: minima
-gems:
-  - jekyll-feed
+
+#theme: minima
+
 exclude:
   - Gemfile
   - Gemfile.lock
 timezone: Europe/Dublin
+#markdown:         redcarpet
+markdown: kramdown
+highlighter: rouge
+
+# Permalinks
+permalink:        pretty
+gems: [jekyll-paginate, jekyll-feed]
+paginate: 5
+paginate_path: "page:num"
+tagline:          'A Jekyll theme'
+
+author:
+  name:           'Will Hennessey'
+  url:            https://twitter.com/sicklickwill
+
+version: 0.0.1
