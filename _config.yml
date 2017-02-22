@@ -40,8 +40,8 @@ highlighter: rouge
 permalink:        pretty
 gems: [jekyll-paginate, jekyll-feed]
 paginate: 5
-paginate_path: "page:num"
-tagline:          'A Jekyll theme'
+paginate_path: 'page:num'
+tagline: 'A Jekyll theme'
 
 author:
   name:           'Will Hennessey'

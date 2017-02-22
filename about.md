@@ -4,21 +4,22 @@ title: About
 ---
 
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  Hey there! I'm Will Hennessey, I'm based in Dublin/Ireland and work as a software engineer for a Cyber Security company.
 </p>
+My day to day job involves, building in-house systems, automating business processes and building web-applications.
+I'm most at home when working on the back end, but I'm no stranger to frontend design either.
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+Ruby and Ruby on Rails are my forté. I aspire to one day be that Object Orientation guru who can spot patterns anywhere and apply elegant designs to solve any of life's most mind boggling problems.
 
-There are currently two themes built on Poole:
+I'm really interested in web application security and pentesting, although it's not part of my day job, I like poking around with tools like Burpsuite and OWASP ZAP
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+## So why the Blog?
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+My main reason for starting this blog is to share any fun or challenging work I do.
 
-## Setup
+Ruby has an amazing online community and I have learned tonnes of valuable lessons from reading blogs and posts of those who tried (and sometimes failed) before me.
 
-Some fun facts about the setup of this project include:
+It feels almost rude not to try give something back that could be of benefit to other web developers, software engineers, students (it's all the same really).
 
 * Built for [Jekyll](http://jekyllrb.com)
 * Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
