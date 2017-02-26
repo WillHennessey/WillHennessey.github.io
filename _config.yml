@@ -13,12 +13,12 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
+
 title: Another Engineering Blog
 email: will.hennessey735@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+description: >
+  A blog full of Ruby, Ruby on Rails and a little web application security.
+
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "http://anotherengineeringblog.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: sicklickwill
@@ -33,7 +33,7 @@ exclude:
   - Gemfile.lock
 timezone: Europe/Dublin
 #markdown:         redcarpet
-markdown: kramdown
+markdown: redcarpet
 highlighter: rouge
 
 # Permalinks
@@ -41,7 +41,14 @@ permalink:        pretty
 gems: [jekyll-paginate, jekyll-feed]
 paginate: 5
 paginate_path: 'page:num'
-tagline: 'A Jekyll theme'
+tagline: 'Just another engineering blog'
+
+# Comments
+comments:
+  provider: disqus
+
+disqus:
+  short_name: anotherengineeringblog
 
 author:
   name:           'Will Hennessey'

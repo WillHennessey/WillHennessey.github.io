@@ -188,11 +188,11 @@ figure.highlight{
 /* Pygments via Jekyll */
 .highlight {
   float: left;
-  margin-bottom: 1rem;
+  margin: 0.25rem;
   border-radius: 2px;
 }
 .highlight pre {
-  margin-bottom: 0;
+  margin: 0.25rem;
 }
 
 /* Gist via GitHub Pages */

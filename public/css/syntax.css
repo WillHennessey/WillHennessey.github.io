@@ -61,7 +61,7 @@
 .highlight .il { color: #f60 } /* Literal.Number.Integer.Long */
 .highlight .lineno{
     color: #ccc;
-    display:inline-block;
+    display: inline-block;
     padding: 0 5px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -70,9 +70,10 @@
     -ms-user-select: none;
     user-select: none;
 }
-figure {
-
+.block-code{
+    display: inline-block;
 }
+
 .css .o,
 .css .o + .nt,
 .css .nt + .nt { color: #999; }
