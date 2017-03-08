@@ -26,18 +26,16 @@ github_username:  WillHennessey
 
 # Build settings
 
-#theme: minima
-
 exclude:
   - Gemfile
   - Gemfile.lock
 timezone: Europe/Dublin
-#markdown:         redcarpet
+
 markdown: redcarpet
 highlighter: rouge
 
 # Permalinks
-permalink:        pretty
+permalink: /:title
 gems: [jekyll-paginate, jekyll-feed]
 paginate: 5
 paginate_path: 'page:num'
