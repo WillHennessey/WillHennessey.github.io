@@ -5,13 +5,14 @@ comments: true
 date: 2017-02-26 01:25:00 +0000
 ---
 <p class='message'>
-    @RailsDeveloper Want to implement your own version of twitter's mention feature in your Rails app? 
+    <strong>@RailsDeveloper</strong> Want to implement your own version of twitter's mention feature in your Rails app? 
     In this post I'll show you how to implement the mention feature for posts, but don't feel limited to just posts. 
     You can easily adapt the code to work on comments, articles, tickets or whatever you like. 
 </p>
 
 ![Mention Feature Example]({{ site.url }}/public/images/posts-example.png)
-## Installation
+
+## Setup
 First things first, you'll need to install and configure the [jquery-atwho-rails](https://github.com/ichord/jquery-atwho-rails) gem. 
 
 Add `gem 'jquery-atwho-rails'` to your Gemfile then do a `bundle install`
@@ -48,50 +49,54 @@ end
     Now you can add the following code to your users_controller.rb, you'll notice the function matches the route defined in the routes.rb file.
 </p>
 <div class='block-code'>
-    {% highlight ruby %}
-    # app/controllers/users_controller.rb
-    def mentions
-      respond_to do |format|
-        format.json { render :json =>Mention.all(params[:q]) }
-      end
-    end
-    {% endhighlight %}
+{% highlight ruby %}
+# app/controllers/users_controller.rb
+def mentions
+  respond_to do |format|
+    format.json { render :json =>Mention.all(params[:q]) }
+  end
+end
+{% endhighlight %}
 </div>
 
 <p>Next is the coffeescript, you can write this code in Javascript if you prefer. I went with coffeescript here as I like the syntax and wanted to practice my coffeescript.
 The remoteFilter callback allows us to fire a request to our Users controller to fetch a list of users to mention. 
 This will return a JSON object containing a list of usernames matching params[:q] and images for each user.
 The "displayTpl" option is basically allowing us to specify what we do with the returned data.
-Notice here I've added a CSS class called 'mention-item', this will allow me to tweak the look and feel of the dropdown menu.</p>
+Notice here I've added a CSS class called 'mention-item', this will allow you to tweak the look and feel of the dropdown menu.</p>
 
 <div class='block-code'>
-    {% highlight coffee-script %}
-    # app/assets/javascripts/posts.coffee
-    class @Post
-      @add_atwho = ->
-        $('#post_content').atwho
-          at: '@'
-          displayTpl: "<li class='mention-item' data-value='(${name},${image})'>${name}${image}</li>",
-          callbacks: remoteFilter: (query, callback) ->
-            if (query.length < 1)
-              return false
-            else
-              $.getJSON '/mentions', { q: query }, (data) ->
-                callback data
-    jQuery ->
-      @refresh_atwho() 
-      
-    @refresh_atwho = ->
-      Post.add_atwho()
+{% highlight coffee-script %}
+# app/assets/javascripts/posts.coffee
+class @Post
+  @add_atwho = ->
+    $('#post_content').atwho
+      at: '@'
+      displayTpl:"<li class='mention-item' data-value='(${name},${image})'>${name}${image}</li>",
+      callbacks: remoteFilter: (query, callback) ->
+        if (query.length < 1)
+          return false
+        else
+          $.getJSON '/mentions', { q: query }, (data) ->
+            callback data
+
+jQuery ->
+  Post.add_atwho()
     {% endhighlight %}
 </div>
 
-<p> Add this line to the appropriate view javascript file, for example I display mentions from home.html.erb, so I add this line to home.js.erb
-{% highlight javascript %}
-refresh_atwho();
-{% endhighlight %}
-</p>
+Finally the Mention class, this class will contain all the logic for finding and creating our mentions. 
+Some of you might be thinking "why bother with a Mention class when you could just add this functionality to the User model". 
+I extracted the functionality to this class for several reasons: 
+
+- It's important to follow the single responsibility principle, this helps prevent ActiveRecord models from growing too complex and becoming a maintenance nightmare.
+- It clearly defines the mention concept within the application.
+- With this design it's easy to extend the functionality of the feature further.
+ 
+
+<div class='block-code'>
 {% highlight ruby %}
+# app/models/mention.rb
 class Mention
   attr_reader :mentionable
   include Rails.application.routes.url_helpers
@@ -116,7 +121,7 @@ class Mention
   end
 
   def self.create_from_match(match)
-    user = User.find_by(username: match.downcase.delete('@'))
+    user = User.find_by(username: match.delete('@'))
     UserMention.new(user) if user.present?
   end
 
@@ -134,3 +139,11 @@ class Mention
   end
 end
 {% endhighlight %}
+</div>
+
+## Thoughts 
+
+In my day job the mention feature was popular with the folks working on our systems. 
+They asked if I could extend the feature so they could mention teams as well as users. 
+With this design it's easy to add another subclass called TeamMention and extend the functionality to mention teams.
+So now instead of having a simple username mention we have a polymorphic mention for both teams and users. 
