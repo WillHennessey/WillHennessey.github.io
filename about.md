@@ -2,10 +2,15 @@
 layout: page
 title: About
 ---
-
 <p class="message">
   Hey there! I'm Will Hennessey, I'm based in Dublin/Ireland and work as a software engineer for a Cyber Security company.
 </p>
+
+<div class="avatar">
+  <img src="{{ site.url }}/public/images/avatar.jpg" class="avatar-image"></img>
+  <div class="avatar-name">Will Hennessey</div>
+</div>
+
 My day to day job involves, building in-house systems, automating business processes and building web-applications.
 I'm most at home when working on the back end, but I'm no stranger to frontend design either.
 
