@@ -44,12 +44,12 @@ tagline: 'Just another engineering blog'
 # Comments
 comments:
   provider: disqus
-
 disqus:
   short_name: anotherengineeringblog
 
 author:
   name:           'Will Hennessey'
   url:            https://twitter.com/sicklickwill
-
+github:
+  repo: https://github.com/WillHennessey
 version: 0.0.1
