@@ -19,13 +19,13 @@ email: will.hennessey735@gmail.com
 description: >
   A blog full of Ruby, Ruby on Rails and a little web application security.
 
+tagline: 'Another Engineering Blog'
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "http://anotherengineeringblog.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: sicklickwill
 github_username:  WillHennessey
 
 # Build settings
-
 exclude:
   - Gemfile
   - Gemfile.lock
