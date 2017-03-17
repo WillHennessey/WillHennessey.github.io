@@ -2,19 +2,18 @@
 layout: page
 title: About
 ---
-<p class="message">
-  Hey there! I'm Will Hennessey, I'm based in Dublin/Ireland and work as a software engineer for a Cyber Security company.
-</p>
 
 <div class="avatar">
   <img src="{{ site.url }}/public/images/avatar.jpg" class="avatar-image"></img>
   <div class="avatar-name">Will Hennessey</div>
 </div>
 
+<p class="message">
+  Hey there! I'm based in Dublin/Ireland and work as a software engineer for a Cyber Security company.
+</p>
+
 My day to day job involves, building in-house systems, automating business processes and building web-applications.
 I'm most at home when working on the back end, but I'm no stranger to frontend design either.
-
-Ruby and Ruby on Rails are my forté. I aspire to be an Object Orientation guru and apply elegant designs to solve any of life's most mind boggling problems.
 
 I'm really interested in web application security and pentesting, although it's not part of my day job, I like poking around with tools like Burpsuite and OWASP ZAP.
 
