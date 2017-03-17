@@ -31,7 +31,7 @@ exclude:
   - Gemfile.lock
 timezone: Europe/Dublin
 
-markdown: redcarpet
+markdown: kramdown
 highlighter: rouge
 
 # Permalinks
