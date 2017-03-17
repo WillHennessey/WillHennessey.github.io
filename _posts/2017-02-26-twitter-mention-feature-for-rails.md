@@ -215,4 +215,4 @@ They asked if I could extend the feature so they could mention teams as well as 
 With this design it's easy to add another subclass to the Mention class, I added a class called TeamMention to mention teams.
 So now instead of having a simple username mention we have a polymorphic mention for both teams and users. 
 
-Let me know in the comment's or on [Twitter](https://twitter.com/sicklickwill) if you have any questions, comments or a creative implementation of the feature! 
+Let me know in the comment's or on [Twitter](https://twitter.com/engineeringblg) if you have any questions, comments or a creative implementation of the feature! 
