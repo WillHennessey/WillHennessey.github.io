@@ -25,6 +25,6 @@ Ruby has an amazing online community and I have learned tonnes of valuable lesso
 
 It feels almost rude not to try give something back that could be of benefit to other web developers, software engineers, students (it's all the same really).
 
-Have questions, suggestions or feedback? Feel free to leave a comment on one of my posts or [ask me on Twitter](https://twitter.com/engineeringblg).
+Have questions, suggestions or feedback? Feel free to leave a comment on one of my posts or [ask me on Twitter](https://twitter.com/sicklickwill).
 
 Thanks for reading and I hope you enjoy the posts!
