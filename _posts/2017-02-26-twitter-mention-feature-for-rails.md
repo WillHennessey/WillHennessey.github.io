@@ -2,7 +2,7 @@
 layout: post
 title: Twitter's mention feature for Rails 
 description: Twitter mention feature for Ruby on Rails applications
-image: public/images/posts-example.png
+image: /public/images/posts-example.png
 comments: true
 date: 2017-02-26 01:25:00 +0000
 ---
