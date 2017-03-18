@@ -20,8 +20,10 @@ description: >
   A blog full of Ruby, Ruby on Rails and a little web application security.
 
 tagline: 'Another Engineering Blog'
+image: 'public/ms-icon-310x310'
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: "http://anotherengineeringblog.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://anotherengineeringblog.com" # the base hostname & protocol for your site, e.g. http://example.com
+enforce_ssl: 'anotherengineeringblog.com'
 twitter_username: sicklickwill
 github_username:  WillHennessey
 
@@ -36,7 +38,7 @@ highlighter: rouge
 
 # Permalinks
 permalink: /:title
-gems: [jekyll-paginate, jekyll-feed]
+gems: [jekyll-paginate, jekyll-feed, jekyll-seo-tag]
 paginate: 5
 paginate_path: 'page:num'
 tagline: 'Just another engineering blog'
@@ -49,7 +51,7 @@ disqus:
 
 author:
   name:           'Will Hennessey'
-  url:            https://twitter.com/engineeringblg
+  url:            https://twitter.com/sicklickwill
 github:
   repo: https://github.com/WillHennessey
 version: 1.0.0

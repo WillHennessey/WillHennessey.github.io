@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Extract and parse digital certificates using Ruby
+description: Extracting and parsing digital certificates from PE files using Ruby
 comments: true
 date: 2017-03-12 21:35:00 +0000
 ---
