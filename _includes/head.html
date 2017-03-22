@@ -51,5 +51,12 @@
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
   {% seo %}
+  <!-- add description and keywords for SEO -->
+
+  {% if page.keywords %}
+  <meta name="keywords" content="{{ page.keywords }}" />
+  {% else %}
+  <meta name="keywords" content="ruby, ruby on rails, rails, web application security, engineering, blog" />
+  {% endif %}
   {% include analytics.html %}
 </head>
