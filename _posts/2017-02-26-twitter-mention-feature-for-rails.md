@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Twitter's mention feature for Rails 
-description: Implement your own version of Twitter's mention feature for Ruby on Rails applications
+description: Implement your own version of Twitter's mention feature for Ruby on Rails applications using JQuery atwho / at.js
 image: /public/images/posts-example.png
 comments: true
 date: 2017-02-26 01:25:00 +0000
