@@ -2,7 +2,7 @@
 layout: post
 title: Optimizing Performance of Ordered Active Record Queries
 description: Improving the performance of ordered Active Record queries on a MySQL database.
-keywords: order_by, Active Record, Rails, rails, ruby, Ruby, MySQL, Database, ordering, queries, query, order
+keywords: order_by, Using Filesort, Filesort, Active Record, Rails, rails, ruby, Ruby, MySQL, Database, ordering, queries, query, order
 comments: true
 date: 2017-04-11 14:20:00 +0000
 ---
