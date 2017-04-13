@@ -243,15 +243,15 @@ img {
 
 /* Tables */
 table {
+  width: 100%;
   font-size: 1rem;
   margin-bottom: 1rem;
-  width: 100%;
   border: 1px solid #e5e5e5;
   border-collapse: collapse;
 }
 td,
 th {
-  padding: .25rem .5rem;
+  padding: .2rem .5rem;
   border: 1px solid #e5e5e5;
 }
 tbody tr:nth-child(odd) td,

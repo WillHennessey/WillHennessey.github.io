@@ -19,50 +19,10 @@ The relationship between these tables is a User has many Posts.
 The Posts table is linked by the foreign key `user_id` to the Users table.
 
 ### Posts
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>content</th>
-      <th>user_id</th>
-      <th>created_at</th>
-      <th>updated_at</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>102321</td>
-      <td>Posting about nothing relevant</td>
-      <td>32132</td>
-      <td>2017-10-04 00:10:49</td>
-      <td>2017-10-04 00:11:17</td>
-    </tr>
-  </tbody>
-</table>
+![Posts table]({{ site.url }}/public/images/Posts_1.png)
 
 ### Users
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>username</th>
-      <th>email</th>
-      <th>password_digest</th>
-      <th>created_at</th>
-      <th>updated_at</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>7092</td>
-      <td>darth_vad3r</td>
-      <td>darkside@gmail.com</td>
-      <td>$2a$04$XtIuZBCmXD4a</td>
-      <td>2016-01-02 00:10:49</td>
-      <td>2017-07-01 00:11:17</td>
-    </tr>
-  </tbody>
-</table>
+![Users table]({{ site.url }}/public/images/User_2.png)
 
 You're bound to see an ActiveRecord statement that's something like this:
 <div class = "block-code">
@@ -89,40 +49,7 @@ EXPLAIN is a must know for any serious Rails developer, it helps you understand 
 There are already many good blog posts on EXPLAIN and it's usage, such as this one [here](https://www.sitepoint.com/using-explain-to-write-better-mysql-queries).
 Below is the output of running EXPLAIN on our query.
 
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>select_type</th>
-      <th>table</th>
-      <th>partitions</th>
-      <th>type</th>
-      <th>possible_keys</th>
-      <th>key</th>
-      <th>key_len</th>
-      <th>ref</th>
-      <th>rows</th>
-      <th>filtered</th>
-      <th>Extra</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>SIMPLE</td>
-      <td>posts</td>
-      <td></td>
-      <td>ALL</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>4</td>
-      <td>25.00</td>
-      <td>Using where; Using filesort</td>
-    </tr>
-  </tbody>
-</table>
+![Explain Query 1]({{ site.url }}/public/images/explain_1.png)
 
 As you can see this is a terrible query, it is using no indexes and doing a full table scan, luckily there's only 4 rows!
 
@@ -142,40 +69,7 @@ ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users (id);
 {% endhighlight %}
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>select_type</th>
-      <th>table</th>
-      <th>partitions</th>
-      <th>type</th>
-      <th>possible_keys</th>
-      <th>key</th>
-      <th>key_len</th>
-      <th>ref</th>
-      <th>rows</th>
-      <th>filtered</th>
-      <th>Extra</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>SIMPLE</td>
-      <td>posts</td>
-      <td></td>
-      <td>ref</td>
-      <td>user_id</td>
-      <td>user_id</td>
-      <td>5</td>
-      <td>const</td>
-      <td>1</td>
-      <td>100.00</td>
-      <td>Using index condition; Using filesort</td>
-    </tr>
-  </tbody>
-</table>
+![Explain Query 2]({{ site.url }}/public/images/explain_2.png)
 
 Things are looking a lot better now with the addition of the foreign key constraint.
 If you look in the Extra column you'll notice that there are two statements "Using index" (good) and "Using filesort" (bad).
@@ -212,39 +106,6 @@ ALTER TABLE posts ADD INDEX user_id_updated_at (user_id, updated_at);
 {% endhighlight %}
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>select_type</th>
-      <th>table</th>
-      <th>partitions</th>
-      <th>type</th>
-      <th>possible_keys</th>
-      <th>key</th>
-      <th>key_len</th>
-      <th>ref</th>
-      <th>rows</th>
-      <th>filtered</th>
-      <th>Extra</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>SIMPLE</td>
-      <td>posts</td>
-      <td></td>
-      <td>ref</td>
-      <td>user_id_updated_at</td>
-      <td>user_id_updated_at</td>
-      <td>5</td>
-      <td>const</td>
-      <td>1</td>
-      <td>100.00</td>
-      <td>Using where</td>
-    </tr>
-  </tbody>
-</table>
+![Explain Query 3]({{ site.url }}/public/images/explain_3.png)
 
 Finally we have a query using the new index `user_id_updated_at` and "Using Filesort" is a thing of the past.
