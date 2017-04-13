@@ -19,10 +19,10 @@ The relationship between these tables is a User has many Posts.
 The Posts table is linked by the foreign key `user_id` to the Users table.
 
 ### Posts
-![Posts table]({{ site.url }}/public/images/Posts_1.png)
+![Posts table]({{ site.url }}/public/images/Posts_1.PNG)
 
 ### Users
-![Users table]({{ site.url }}/public/images/User_2.png)
+![Users table]({{ site.url }}/public/images/User_2.PNG)
 
 You're bound to see an ActiveRecord statement that's something like this:
 <div class = "block-code">
@@ -49,7 +49,7 @@ EXPLAIN is a must know for any serious Rails developer, it helps you understand 
 There are already many good blog posts on EXPLAIN and it's usage, such as this one [here](https://www.sitepoint.com/using-explain-to-write-better-mysql-queries).
 Below is the output of running EXPLAIN on our query.
 
-![Explain Query 1]({{ site.url }}/public/images/explain_1.png)
+![Explain Query 1]({{ site.url }}/public/images/explain_1.PNG)
 
 As you can see this is a terrible query, it is using no indexes and doing a full table scan, luckily there's only 4 rows!
 
@@ -69,7 +69,7 @@ ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users (id);
 {% endhighlight %}
 </div>
 
-![Explain Query 2]({{ site.url }}/public/images/explain_2.png)
+![Explain Query 2]({{ site.url }}/public/images/explain_2.PNG)
 
 Things are looking a lot better now with the addition of the foreign key constraint.
 If you look in the Extra column you'll notice that there are two statements "Using index" (good) and "Using filesort" (bad).
@@ -106,6 +106,6 @@ ALTER TABLE posts ADD INDEX user_id_updated_at (user_id, updated_at);
 {% endhighlight %}
 </div>
 
-![Explain Query 3]({{ site.url }}/public/images/explain_3.png)
+![Explain Query 3]({{ site.url }}/public/images/explain_3.PNG)
 
 Finally we have a query using the new index `user_id_updated_at` and "Using Filesort" is a thing of the past.
