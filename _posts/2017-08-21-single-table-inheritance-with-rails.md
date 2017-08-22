@@ -2,7 +2,7 @@
 layout: post
 title: Single Table Inheritance with Rails
 description: A practical example of single table inheritance with Rails.
-keywords: single table inheritence, single table, inheritence, Active Record, Rails, rails, ruby, Ruby, MySQL, Database, tickets, JIRA
+keywords: single table inheritence, single table, inheritence, Active Record, Rails, rails, ruby, Ruby, MySQL, Database, tickets, JIRA, ticketing system, kanban
 comments: true
 date: 2017-08-11 15:03:00 +0000
 ---
@@ -15,6 +15,7 @@ It became apparent to the team early on that all these tickets would have the ex
 
 ## When to use Single Table Inheritance
 Before diving into how to implement STI, I want to point out that this design choice only makes sense in certain circumstances.
+You should ask yourself the following questions: 
 * Does your application have several sub-models that inherit from a parent model class?
 * Do the sub-models all have the same attributes and database columns as each other?
 * Do the sub-models need to behave differently from the parent model class?
@@ -37,9 +38,9 @@ Here's an example migration for creating the ticket table.
 class CreateTickets
   def change
     create_table :tickets do |t|
-      t.integer :priority, unsigned: true, null: false
+      t.integer :priority, unsigned: true
       t.integer :assignee_id, unsigned: true
-      t.string :type, limit: 255, null:false
+      t.string :type, limit: 255
       t.string :abstract, limit: 255, null: false
       t.text, :details limit: 65535, null: false
       t.timestamps
@@ -80,5 +81,41 @@ end
 {% endhighlight %}
 </div>
 
-So we've defined our Ticket model with some database constraints, a couple of validations and an after_create action.
+So we've defined our base Ticket model with some relationship constraints, a few validations and an after_create action.
 Notice that we have not defined the method `set_default_priority` yet, this will be done in the sub-models. 
+
+<div class = "block-code">
+{% highlight ruby %}
+# app/models/defect_ticket.rb
+class DefectTicket < Ticket
+
+end
+{% endhighlight %}
+</div>
+
+<div class = "block-code">
+{% highlight ruby %}
+# app/models/story_ticket.rb
+class StoryTicket < Ticket
+
+end
+{% endhighlight %}
+</div>
+
+<div class = "block-code">
+{% highlight ruby %}
+# app/models/issue_ticket.rb
+class IssueTicket < Ticket
+
+end
+{% endhighlight %}
+</div>
+
+<div class = "block-code">
+{% highlight ruby %}
+# app/models/request_ticket.rb
+class RequestTicket < Ticket
+
+end
+{% endhighlight %}
+</div>
