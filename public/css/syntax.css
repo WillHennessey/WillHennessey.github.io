@@ -75,6 +75,14 @@
     display: inline-block;
 }
 
+.block-code-expanded {
+    display: inline-block;
+    width: 100%;
+}
+
+.block-code-expanded > .highlight > pre {
+    padding: 1rem;
+}
 .css .o,
 .css .o + .nt,
 .css .nt + .nt { color: #999; }

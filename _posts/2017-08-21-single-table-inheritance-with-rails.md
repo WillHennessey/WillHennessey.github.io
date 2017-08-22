@@ -33,20 +33,17 @@ I'm going to stick with the JIRA example given above, so the first thing we'll d
 
 Here's an example migration for creating the ticket table.
 
-<div class = "block-code">
+<div class = "block-code-expanded">
 {% highlight ruby %}
-class CreateTickets
+class CreateTickets < ActiveRecord::Migration
   def change
     create_table :tickets do |t|
-      t.integer :priority, unsigned: true
-      t.integer :assignee_id, unsigned: true
+      t.integer :priority, unsigned: true, null: false, default: 4
       t.string :type, limit: 255
       t.string :abstract, limit: 255, null: false
-      t.text, :details limit: 65535, null: false
+      t.text :details, limit: 65535, null: false
       t.timestamps
     end
-    
-    add_foreign_key: :tickets, :users, column: :assignee_id
   end
 end
 {% endhighlight %}
@@ -68,9 +65,8 @@ class Ticket < ActiveRecord::Base
   has_many :comments, class_name: 'Comment', dependent: :destroy
   
   validates :abstract, presence: true, length: { minimum: 10, maximum: MAX_ABSTRACT_LENGTH }
-  validates :details, presence: true, length: { minimum: 10, maximum: MAX_DESCRIPTION_LENGTH }
-  validates :priority, presence: true, numericality: { only_integer: true, 
-                                                       greater_than_or_equal_to: 0 }
+  validates :details, presence: true, length: { minimum: 10, maximum: MAX_DETAILS_LENGTH }
+  validates :priority, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   
   after_create :set_default_priority
   
@@ -84,7 +80,7 @@ end
 So we've defined our base Ticket model with some relationship constraints, a few validations and an after_create action.
 Notice that we have not defined the method `set_default_priority` yet, this will be done in the sub-models. 
 
-<div class = "block-code">
+<div class = "block-code-expanded">
 {% highlight ruby %}
 # app/models/defect_ticket.rb
 class DefectTicket < Ticket
@@ -93,7 +89,7 @@ end
 {% endhighlight %}
 </div>
 
-<div class = "block-code">
+<div class = "block-code-expanded">
 {% highlight ruby %}
 # app/models/story_ticket.rb
 class StoryTicket < Ticket
@@ -102,7 +98,7 @@ end
 {% endhighlight %}
 </div>
 
-<div class = "block-code">
+<div class = "block-code-expanded">
 {% highlight ruby %}
 # app/models/issue_ticket.rb
 class IssueTicket < Ticket
@@ -111,7 +107,7 @@ end
 {% endhighlight %}
 </div>
 
-<div class = "block-code">
+<div class = "block-code-expanded">
 {% highlight ruby %}
 # app/models/request_ticket.rb
 class RequestTicket < Ticket
