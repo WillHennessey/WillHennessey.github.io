@@ -80,9 +80,19 @@
     width: 100%;
 }
 
-.block-code-expanded > .highlight > pre {
-    padding: 1rem;
+.block-code > .highlight > pre {
+    padding: 0.75rem;
 }
+
+.block-code-expanded > figure {
+    display: block;
+    width: 100%;
+}
+
+.block-code-expanded > .highlight > pre {
+    padding: 0.75rem;
+}
+
 .css .o,
 .css .o + .nt,
 .css .nt + .nt { color: #999; }

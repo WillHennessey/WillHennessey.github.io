@@ -39,7 +39,7 @@ highlighter: rouge
 # Permalinks
 permalink: /:title
 gems: [jekyll-paginate, jekyll-feed, jekyll-seo-tag]
-paginate: 5
+paginate: 3
 paginate_path: 'page:num'
 tagline: 'Just another engineering blog'
 
