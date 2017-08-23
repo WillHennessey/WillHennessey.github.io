@@ -39,7 +39,7 @@ class CreateTickets < ActiveRecord::Migration
   def change
     create_table :tickets do |t|
       t.integer :priority, unsigned: true, null: false, default: 4
-      t.string :type, limit: 255
+      t.string :type, limit: 255, null: false
       t.string :abstract, limit: 255, null: false
       t.text :details, limit: 65535, null: false
       t.timestamps
@@ -54,15 +54,12 @@ The `type` column we've defined will be used by STI, to store the sub-model name
 Next we'll need to define our Ticket model and it's sub-models. 
 A simple Ticket model will look like this.
 
-<div class = "block-code">
+<div class = "block-code-expanded">
 {% highlight ruby %}
 # app/models/ticket.rb
 class Ticket < ActiveRecord::Base
   MAX_ABSTRACT_LENGTH = 255
   MAX_DETAILS_LENGTH = 65535
-  
-  belongs_to :assignee, class_name: 'User', foreign_key: 'assignee_id'
-  has_many :comments, class_name: 'Comment', dependent: :destroy
   
   validates :abstract, presence: true, length: { minimum: 10, maximum: MAX_ABSTRACT_LENGTH }
   validates :details, presence: true, length: { minimum: 10, maximum: MAX_DETAILS_LENGTH }
@@ -70,48 +67,95 @@ class Ticket < ActiveRecord::Base
   
   after_create :set_default_priority
   
-  def add_comment(text, user)
-    comments.build(text: text, user: user).save
+  def ticket_description
+    "This is a #{type.downcase} ticket."
   end
 end
 {% endhighlight %}
 </div>
 
-So we've defined our base Ticket model with some relationship constraints, a few validations and an after_create action.
+So we've defined our base Ticket model with a few validations and an after_create action.
 Notice that we have not defined the method `set_default_priority` yet, this will be done in the sub-models. 
 
 <div class = "block-code-expanded">
 {% highlight ruby %}
-# app/models/defect_ticket.rb
-class DefectTicket < Ticket
+# app/models/defect.rb
+class Defect < Ticket
 
+  def set_default_priority
+    update(priority: 1)
+  end
+  
+  def due_at
+    created_at + 1.day + 1.hour
+  end
 end
 {% endhighlight %}
 </div>
 
 <div class = "block-code-expanded">
 {% highlight ruby %}
-# app/models/story_ticket.rb
-class StoryTicket < Ticket
+# app/models/story.rb
+class Story < Ticket
 
+  def set_default_priority
+    update(priority: 2)
+  end
+  
+  def due_at
+    created_at + 1.day + 3.hours
+  end
 end
 {% endhighlight %}
 </div>
 
 <div class = "block-code-expanded">
 {% highlight ruby %}
-# app/models/issue_ticket.rb
-class IssueTicket < Ticket
-
+# app/models/issue.rb
+class Issue < Ticket
+  
+  def set_default_priority
+    update(priority: 3)
+  end
+  
+  def due_at
+    created_at + 1.day + 6.hours
+  end
 end
 {% endhighlight %}
 </div>
 
 <div class = "block-code-expanded">
 {% highlight ruby %}
-# app/models/request_ticket.rb
-class RequestTicket < Ticket
+# app/models/request.rb
+class Request < Ticket
 
+  def set_default_priority
+    update(priority: 4)
+  end
+  
+  def due_at
+    created_at + 1.day + 12.hours
+  end
 end
+{% endhighlight %}
+</div>
+
+All of the sub-models we've defined have a unique implementation of the `set_default_priority` function.
+This is to illustrate that by using STI we can have sub-models share the same database table, yet have behave differently.
+
+Using the rails console we test that STI is working as expected.
+<div class = "block-code-expanded">
+{% highlight ruby %}
+# Open the console by typing 'rails console' in your terminal
+ticket = Ticket.create(abstract: 'Testing abstract', 
+                       details: 'Testing details', 
+                       type: 'Defect')    
+                                         
+puts ticket.description
+=> "This is a defect ticket"
+
+puts ticket.priority
+=> "1"
 {% endhighlight %}
 </div>
