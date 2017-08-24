@@ -21,11 +21,10 @@ You should ask yourself the following questions:
 * Do the sub-models need to behave differently from the parent model class?
  
 If you answered yes to all of the above, then you've come to the right place. 
-If not you may need to consider another design or even separate tables for each model.
-
+If not you may need to consider another design like polymorphism, or even separate tables for each model.
+Having attributes that are not used by all sub-models can lead to a tonne of nulls in your database.
+ 
 Remember that STI is a great way of DRYing up models that share the same attributes, OO characteristics and database structure. 
-
-It's not supposed to be used to compress many similar tables into one big table.
 
 ## A real world example 
 
@@ -49,7 +48,10 @@ end
 {% endhighlight %}
 </div>
 
-The `type` column we've defined will be used by STI, to store the sub-model name.
+The `type` column we've defined is the default column used by STI, to store the sub-model name.
+If you want to use a different column you just need to declare it your base model. 
+
+`self.inheritance_column = :my_cool_column`
 
 Next we'll need to define our Ticket model and it's sub-models. 
 A simple Ticket model will look like this.
@@ -146,7 +148,7 @@ end
 All of the sub-models we've defined have a unique implementation of the `set_default_priority` function.
 This is to illustrate that by using STI we can have sub-models share the same database table, yet have behave differently.
 
-Using the rails console we test that STI is working as expected.
+Using the rails console we can test that STI is working as expected.
 <div class = "block-code-expanded">
 {% highlight ruby %}
 # Open the console by typing 'rails console' in your terminal
@@ -166,8 +168,8 @@ ticket.due_at
 {% endhighlight %}
 </div>
 
-Now we know STI is working we can begin to build our ticketing system on our ticket mode.
-We add our routes and some controller actions. 
+Now we know STI is working as expected, we can begin to build our ticketing system on our ticket model.
+We can add our routes and some controller actions. 
 
 <div class="block-code-expanded">
 {% highlight ruby %}
@@ -186,9 +188,19 @@ class TicketsController < ApplicationController
   def index
     @tickets = Ticket.all
   end
+  
+  def show
+    @ticket = Ticket.find(params[:id])
+  end
 
   .... 
 
 end
 {% endhighlight %}
 </div>
+
+## Wrapping up 
+Through the use of Single Table Inheritance we've been able to design our sub-models to be flexible on a code level, while sharing the same database table.
+I hope this post has given you a good understanding of how and when to implement Single Table Inheritance. 
+I've created a simple toy app with all the code shown above that you can find [here on Github](https://github.com/WillHennessey/sti_demo).
+Feel free to clone it and experiment yourself!
