@@ -39,7 +39,7 @@ class CreateTickets < ActiveRecord::Migration
   def change
     create_table :tickets do |t|
       t.integer :priority, unsigned: true, null: false, default: 4
-      t.string :type, limit: 255, null: false
+      t.string :type, limit: 20, null: false
       t.string :abstract, limit: 255, null: false
       t.text :details, limit: 65535, null: false
       t.timestamps
@@ -58,16 +58,18 @@ A simple Ticket model will look like this.
 {% highlight ruby %}
 # app/models/ticket.rb
 class Ticket < ActiveRecord::Base
+  MAX_TYPE_LENGTH = 20
   MAX_ABSTRACT_LENGTH = 255
   MAX_DETAILS_LENGTH = 65535
   
   validates :abstract, presence: true, length: { minimum: 10, maximum: MAX_ABSTRACT_LENGTH }
   validates :details, presence: true, length: { minimum: 10, maximum: MAX_DETAILS_LENGTH }
+  validates :type, presence: true, length: { minimum: 3, maximum: MAX_TYPE_LENGTH }
   validates :priority, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   
   after_create :set_default_priority
   
-  def ticket_description
+  def description
     "This is a #{type.downcase} ticket."
   end
 end
@@ -151,11 +153,42 @@ Using the rails console we test that STI is working as expected.
 ticket = Ticket.create(abstract: 'Testing abstract', 
                        details: 'Testing details', 
                        type: 'Defect')    
+=> #<Defect id: 1, priority: 1, type: "Defect", abstract: "Testing abstract", details: "Testing details", created_at: "2017-08-24 11:02:12", updated_at: "2017-08-24 11:02:12">
                                          
-puts ticket.description
+ticket.description
 => "This is a defect ticket"
 
-puts ticket.priority
-=> "1"
+ticket.priority
+=> 1
+
+ticket.due_at
+=> Fri, 25 Aug 2017 12:04:26 UTC +00:00
+{% endhighlight %}
+</div>
+
+Now we know STI is working we can begin to build our ticketing system on our ticket mode.
+We add our routes and some controller actions. 
+
+<div class="block-code-expanded">
+{% highlight ruby %}
+# app/config/routes.rb
+Rails.application.routes.draw do
+  resources :tickets, only: [:index, :show, :edit, :update, :create, :new]
+  root 'tickets#index'
+end
+{% endhighlight %}
+</div>
+
+<div class="block-code-expanded">
+{% highlight ruby %}
+# app/controllers/tickets_controller.rb
+class TicketsController < ApplicationController
+  def index
+    @tickets = Ticket.all
+  end
+
+  .... 
+
+end
 {% endhighlight %}
 </div>
