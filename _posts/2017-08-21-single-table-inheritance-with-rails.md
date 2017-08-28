@@ -4,6 +4,7 @@ title: Single Table Inheritance with Rails
 description: A practical example of single table inheritance with Rails.
 keywords: single table inheritence, single table, inheritence, Active Record, Rails, rails, ruby, Ruby, MySQL, Database, tickets, JIRA, ticketing system, kanban
 comments: true
+image: /public/ms-icon-310x310.png
 date: 2017-08-11 15:03:00 +0000
 ---
 
