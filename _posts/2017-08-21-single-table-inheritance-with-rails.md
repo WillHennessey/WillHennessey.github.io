@@ -202,5 +202,5 @@ end
 ## Wrapping up 
 Through the use of Single Table Inheritance we've been able to design our sub-models to be flexible on a code level, while sharing the same database table.
 I hope this post has given you a good understanding of how and when to implement Single Table Inheritance. 
-I've created a simple toy app with all the code shown above that you can find [here on Github](https://github.com/WillHennessey/sti_demo).
+I've created a simple toy app with all the code shown above that you can find [here on Github](https://github.com/WillHennessey/ticketing-system/tree/single-table-inheritance-branch).
 Feel free to clone it and experiment yourself!
