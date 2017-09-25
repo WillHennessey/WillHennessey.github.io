@@ -21,7 +21,7 @@ description: >
 
 tagline: 'Another Engineering Blog'
 image: '/public/ms-icon-310x310'
-baseurl: "https://anotherengineeringblog.com" # the subpath of your site, e.g. /blog
+baseurl: "https://anotherengineeringblog.com/" # the subpath of your site, e.g. /blog
 url: "https://anotherengineeringblog.com" # the base hostname & protocol for your site, e.g. http://example.com
 enforce_ssl: 'anotherengineeringblog.com'
 twitter_username: sicklickwill
