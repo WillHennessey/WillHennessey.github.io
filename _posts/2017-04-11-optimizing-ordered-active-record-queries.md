@@ -25,18 +25,13 @@ The Posts table is linked by the foreign key `user_id` to the Users table.
 ![Users table]({{ site.url }}/public/images/User_2.PNG)
 
 You're bound to see an ActiveRecord statement that's something like this:
-<div class = "block-code">
-{% highlight ruby %}
-Post.where(user_id: 7092).order(updated_at: :desc)
-{% endhighlight %}
-</div>
+
+<script src="https://gist.github.com/WillHennessey/5f197e2fcfcdddf3af19f589254e905a.js"></script>
+
 With Active Record we can easily write a query to retrieve all the posts for a user and order them by when they were last updated.
 Active Record will go and generate the following SQL query:
-<div class = "block-code">
-{% highlight sql %}
-SELECT `posts`.* FROM `posts` WHERE `posts`.`user_id` = 7092  ORDER BY `posts`.`updated_at` DESC;
-{% endhighlight %}
-</div>
+
+<script src="https://gist.github.com/WillHennessey/f2659e8fb66ced38b5c5d7ada5e15c16.js"></script>
 
 However Active Record won't check this query's performance for you and when you go live with your blog you'll see a big difference ordering 1 post vs ordering 1000 posts.
 
@@ -56,18 +51,9 @@ As you can see this is a terrible query, it is using no indexes and doing a full
 So the first thing most people will do in this case is add a foreign key constraint for user_id on the Posts table.
 Lets do that first and re-run the explained query.
 
-<div class = "block-code">
-{% highlight ruby %}
-add_foreign_key :posts, :users # in a Rails migration
-{% endhighlight %}
-</div>
+<script src="https://gist.github.com/WillHennessey/37e19fe066fddda417e21981c1abea0f.js"></script>
 
-<div class = "block-code">
-{% highlight sql %}
-/* in a SQL statement */
-ALTER TABLE posts ADD FOREIGN KEY (user_id) REFERENCES users (id);
-{% endhighlight %}
-</div>
+<script src="https://gist.github.com/WillHennessey/a3211816cf0c54d95897df699701f997.js"></script>
 
 ![Explain Query 2]({{ site.url }}/public/images/explain_2.PNG)
 
@@ -93,18 +79,9 @@ Going back to our Active Record generated SQL query, we can see that the columns
 
 Lets add the index and EXPLAIN our query one last time.
 
-<div class = "block-code">
-{% highlight ruby %}
-add_index :posts, [:user_id, :updated_at] # in a Rails migration
-{% endhighlight %}
-</div>
+<script src="https://gist.github.com/WillHennessey/c06b289cd1aa542b2a8cd9380f060b30.js"></script>
 
-<div class = "block-code">
-{% highlight sql %}
-/* in a SQL statement */
-ALTER TABLE posts ADD INDEX user_id_updated_at (user_id, updated_at);
-{% endhighlight %}
-</div>
+<script src="https://gist.github.com/WillHennessey/92e34fbb56e1b456231f788c8571f9c9.js"></script>
 
 ![Explain Query 3]({{ site.url }}/public/images/explain_3.PNG)
 
