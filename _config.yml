@@ -17,11 +17,11 @@
 title: Another Engineering Blog
 email: will.hennessey735@gmail.com
 description: >
-  A blog full of Ruby, Ruby on Rails and a little web application security.
+  A blog full of Ruby, Ruby on Rails and whatever interests me.
 
 tagline: 'Another Engineering Blog'
 image: '/public/ms-icon-310x310'
-baseurl: "https://anotherengineeringblog.com/" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://anotherengineeringblog.com" # the base hostname & protocol for your site, e.g. http://example.com
 enforce_ssl: 'anotherengineeringblog.com'
 twitter_username: sicklickwill
@@ -50,8 +50,8 @@ disqus:
   short_name: anotherengineeringblog
 
 author:
-  name:           'Will Hennessey'
-  url:            https://twitter.com/sicklickwill
+  name: 'Will Hennessey'
+  url:  https://twitter.com/sicklickwill
 github:
   repo: https://github.com/WillHennessey
 version: 1.1.1
