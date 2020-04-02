@@ -9,22 +9,18 @@ title: About
 </div>
 
 <p class="message">
-  Hey there! I'm based in Dublin/Ireland and work as a software engineer for a Cyber Security company.
+  Hey there! I'm based in Dublin/Ireland and am currently working as a Site Reliability Engineer for Groupon.
 </p>
 
-My day to day job involves, building in-house systems, automating business processes and building web-applications.
-I'm most at home when working on the back end, but I'm no stranger to frontend design either.
-
-I'm really interested in web application security and pentesting, although it's not part of my day job, I like poking around with tools like Burpsuite and OWASP ZAP.
+Previously I worked as a Senior Software Engineer for Symantec and spent the majority of my time building web applications and automating business processes.
 
 ## So why the Blog?
 
-My main reason for starting this blog is to share any fun or challenging work I do.
+I started this blog 4 years ago just to share any fun or challenging work I do.
 
-Ruby has an amazing online community and I have learned tonnes of valuable lessons from reading blogs and posts of those who tried (and sometimes failed) before me.
+I love to code and am always dabbling with emerging technologies, frameworks and languages.
 
-It feels almost rude not to try give something back that could be of benefit to other web developers, software engineers, students (it's all the same really).
-
-Have questions, suggestions or feedback? Feel free to leave a comment on one of my posts or [ask me on Twitter](https://twitter.com/sicklickwill).
+Have questions, suggestions or feedback? 
+Feel free to leave a comment on one of my posts or [ask me on Twitter](https://twitter.com/sicklickwill).
 
 Thanks for reading and I hope you enjoy the posts!
