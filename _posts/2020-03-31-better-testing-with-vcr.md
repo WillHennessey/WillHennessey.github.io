@@ -71,7 +71,7 @@ As you can see in the example below, the cassette captures all details of the re
 
 <script src="https://gist.github.com/WillHennessey/62c9ee8b89d81d70830102c6dca623f9.js"></script>
 
-## Now Where's my Walkman?
+## Where's my Walkman?
 So hopefully by now you've now seen how amazing VCR is and why the Ruby gem crossed over into the Python world. 
 
 I think it's an incredible testing tool and highly recommend every developer use it when testing code that has HTTP interactions.
