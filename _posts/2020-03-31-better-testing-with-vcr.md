@@ -2,7 +2,7 @@
 layout: post
 title: Better Testing with VCR
 description: How you can improve your tests written around HTTP requests by using VCR. 
-keywords:  python, python3, testing, VCR, API, HTTP Testing, HTTP VCR, API Testing
+keywords:  python, python3, vcrpy, vcr, testing, VCR, API, HTTP Testing, HTTP VCR, API Testing
 comments: true
 date: 2020-03-30 13:38:00 +0000
 ---
